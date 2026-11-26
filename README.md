@@ -4,7 +4,7 @@ End-to-end banking analytics portfolio project: data audit, feature engineering,
 SQL (PostgreSQL), statistical analysis, machine learning classification, shifted-window
 validation, Power BI dashboard, and business report.
 
-> **Status: in progress.** Currently at Phase 1 (data audit).
+> **Status: in progress.** Currently at Phase 2 ((cleaning & feature engineering).).
 
 ## Business problem
 Financial institutions need to understand customer behavior, monitor customer segments and
