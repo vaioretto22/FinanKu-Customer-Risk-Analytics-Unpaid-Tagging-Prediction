@@ -118,3 +118,31 @@ def redundant_pairs(features: pd.DataFrame, threshold: float = 0.95) -> pd.DataF
             if corr.loc[ci, cj] >= threshold:
                 rows.append({"feature_1": ci, "feature_2": cj, "abs_corr": corr.loc[ci, cj]})
     return pd.DataFrame(rows).sort_values("abs_corr", ascending=False, ignore_index=True)
+
+
+# ---------------------------------------------------------------------------
+# Model feature sets (used from Phase 5/6)
+# ---------------------------------------------------------------------------
+# The meaning of the credit-card indicator is unknown and it is strongly tied to the
+# tag (see reports/eda_findings.md), so two sets are defined and BOTH are evaluated:
+#   - "no_card"   : conservative primary set, no credit-card information
+#   - "with_card" : adds card_start (n_card_quarters / card_rate carry the same information
+#                   as card_start; card_end is constant and excluded)
+# Redundant duplicates are removed (products_min == products_start, products_max == products_end,
+# active_rate == n_active_quarters / 4, balance level features are almost collinear).
+NO_CARD_FEATURES = [
+    "age", "branch_code", "city", "income_measure", "income_is_zero",
+    "balance_mean", "balance_std", "balance_change_abs", "balance_change_pct",
+    "balance_start_is_zero", "n_zero_balance_quarters",
+    "products_mean", "products_start", "products_end", "products_change",
+    "active_rate", "active_start", "active_end", "active_change",
+]
+WITH_CARD_FEATURES = NO_CARD_FEATURES + ["card_start"]
+
+
+def get_feature_set(name: str) -> list[str]:
+    """Return the feature list for 'no_card' or 'with_card'."""
+    sets = {"no_card": NO_CARD_FEATURES, "with_card": WITH_CARD_FEATURES}
+    if name not in sets:
+        raise ValueError(f"Unknown feature set '{name}'. Choose from {list(sets)}")
+    return list(sets[name])
