@@ -4,7 +4,7 @@ End-to-end banking analytics portfolio project: data audit, feature engineering,
 SQL (PostgreSQL), statistical analysis, machine learning classification, shifted-window validation,
 Power BI dashboard and business report.
 
-> **Status: Phase 5 complete, Phase 6 next.**
+> **Status: Phase 5 complete, Phase 6 (machine learning) in progress.**
 > SQL scripts were executed locally and validated on 2026-11-28 (see [`sql/README.md`](sql/README.md)).
 
 ## Project status
@@ -15,8 +15,8 @@ Power BI dashboard and business report.
 | 2 | Cleaning and feature engineering | Done |
 | 3 | Exploratory data analysis | Done |
 | 4 | SQL database (PostgreSQL) | Done, executed locally |
-| 5 | Statistical analysis | Next |
-| 6 | Machine learning | Pending |
+| 5 | Statistical analysis | Done |
+| 6 | Machine learning | In progress |
 | 7 | Validation and robustness | Pending |
 | 8 | Power BI dashboard | Pending |
 | 9 | Business report | Pending |
@@ -47,9 +47,11 @@ Results describe statistical associations, not causal relationships.
 Both files describe the **same customers**. Q2-Q4 observations are identical across files; the Unpaid Tagging labels
 differ. The validation is therefore a *shifted-window evaluation of the same population*, not validation on unseen customers.
 
-**Data provenance.** The data were provided through a course assignment, with permission to use them in a public
-portfolio. No data dictionary is available, so all variable definitions are working assumptions documented in
-[`reports/assumptions_and_limitations.md`](reports/assumptions_and_limitations.md). Calendar meaning of Q1-Q5 is unknown.
+**Data provenance.** The dataset was provided by [MySkill](https://myskill.id) in the course *Data Analysis*, project
+*Prediction Model* (May 9, 2024), as a course assignment, with permission to use it in a public portfolio. The original files are
+**not included** in this repository (see [`data/README.md`](data/README.md)). No official data dictionary was provided, so all variable
+definitions are working assumptions documented in [`reports/assumptions_and_limitations.md`](reports/assumptions_and_limitations.md).
+The calendar meaning of Q1-Q5 is unknown.
 
 ## Tools
 Python (pandas, NumPy, scikit-learn, statsmodels, SciPy, matplotlib, seaborn), PostgreSQL, SQLAlchemy, Power BI, Git/GitHub.
@@ -78,9 +80,12 @@ All findings are descriptive associations; variable definitions are unconfirmed.
   interval excluding the overall rate in each window).
 - Associations are clearly weaker in Data Validasi than in Data All.
 - Customers whose label changed between windows look similar, on the observed features, to those whose label did not change.
+- Statistical tests (Phase 5, Holm-adjusted, with effect sizes): card status, product count and (in Data All) balance tier are associated with the tag;
+  age, income band, city and branch are not. Most associations are much weaker in Data Validasi. A linear logistic regression fits poorly
+  (McFadden R2 about 0.06 in Data All, 0.004 in Data Validasi), because relationships are non-linear.
 
 ## Model performance
-Pending (Phase 6-7).
+In progress (Phase 6); validation on the shifted window follows in Phase 7.
 
 ## Dashboard preview
 Pending (Phase 8).
@@ -88,14 +93,15 @@ Pending (Phase 8).
 ## Repository structure
 ```
 README.md
+LICENSE               MIT license for the code (data not covered)
 requirements.txt
 .gitignore
 .env.example          template only; real credentials stay in a local .env
 check_env.py          verifies the Python environment
 check_db.py           verifies PostgreSQL connection and SQL vs CSV totals
-data/                 raw / processed / sample (real data is git-ignored)
-notebooks/            01 audit, 02 cleaning and features, 03 EDA (04-06 to come)
-src/                  preprocessing, feature_engineering, eda, db
+data/                 README.md only; raw / processed data are git-ignored
+notebooks/            01 audit, 02 cleaning and features, 03 EDA, 04 statistics (05-06 to come)
+src/                  preprocessing, feature_engineering, eda, stats_utils, db (modeling, evaluation to come)
 sql/                  PostgreSQL scripts, schema documentation, sql/README.md
 figures/              EDA charts (aggregate only)
 reports/              data quality report, data dictionary, EDA findings, assumptions and limitations
@@ -126,6 +132,16 @@ python check_env.py
 4. Verify with `python check_db.py`.
 
 Details, expected results and the local execution log: [`sql/README.md`](sql/README.md).
+
+## Acknowledgements and disclaimer
+Dataset and case context: MySkill, course *Data Analysis*, project *Prediction Model* (May 9, 2024).
+This is an independent portfolio project. It is not affiliated with, endorsed by or produced on behalf of MySkill.
+All analysis, code and interpretations are my own. The dataset is a course case-study dataset; no claim is made that it
+represents the data of a real financial institution.
+
+## License
+The code in this repository is released under the [MIT License](LICENSE). The dataset is **not** covered by this license and
+remains the property of its provider.
 
 ## Limitations
 - Unpaid Tagging, ActiveMember, income and balance units are not formally defined.

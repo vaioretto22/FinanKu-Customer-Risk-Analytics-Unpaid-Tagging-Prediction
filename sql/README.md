@@ -23,7 +23,8 @@ Full details: `schema_documentation.md`.
 ## Requirements
 - PostgreSQL (written for 16, run locally on 19) and the `psql` command-line client
 - The two CSV files placed locally in `data/raw/` as `finanku_data_all.csv` and `finanku_data_validasi.csv`
-  (the data is not included in this repository)
+  (the data is not included in this repository; source: MySkill, course *Data Analysis*, project *Prediction Model*, May 9, 2024,
+  see `data/README.md`)
 
 ## How to run
 1. Create the database:

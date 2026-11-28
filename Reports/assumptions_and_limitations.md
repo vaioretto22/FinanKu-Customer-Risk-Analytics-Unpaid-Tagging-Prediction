@@ -1,9 +1,10 @@
 # Assumptions and Limitations
 
-**Data provenance.** The two files were provided through a course assignment, with permission to use them in a
-portfolio. No data dictionary or contact with a data owner is available, so none of the definitions below can be
-confirmed. Every analysis in this project is written to be valid under the stated assumption, and where one
-assumption is critical, sensitivity checks are reported.
+**Data provenance.** The two files were provided by MySkill in the course *Data Analysis*, project *Prediction Model*
+(May 9, 2024), as a course assignment, with permission to use them in a public portfolio. No data dictionary is available and
+no contact with a data owner was possible, so none of the definitions below can be confirmed. Every analysis in this project is written to be
+valid under the stated assumption, and where one assumption is critical, sensitivity checks are reported.
+This is an independent portfolio project, not affiliated with or endorsed by MySkill.
 
 ## Assumption register
 | # | Unknown | Working assumption | Risk if wrong | How it is handled |
@@ -20,7 +21,7 @@ assumption is critical, sensitivity checks are reported.
 ## Limitations
 - Same customers in both files: the validation is not on unseen customers.
 - No ground truth for what the tag means, so results describe statistical associations only.
-- The data may be synthetic or constructed for teaching; patterns may not reflect real banking behaviour.
+- The data come from a course case study and may be synthetic or constructed for teaching; patterns may not reflect real banking behaviour.
 - Group sizes for 4+ products and for single branches are small; wide uncertainty is shown with intervals.
 
 ## What would reduce the uncertainty

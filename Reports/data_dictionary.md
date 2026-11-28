@@ -1,6 +1,7 @@
 # Data Dictionary
 
-Definitions are **unconfirmed** unless stated; to be validated with the data owner.
+Source: MySkill, course *Data Analysis*, project *Prediction Model* (May 9, 2024). No official data dictionary was provided.
+Definitions below are **unconfirmed** working assumptions unless stated.
 Data All uses Q1-Q4; Data Validasi uses Q2-Q5.
 
 ## 1. Raw columns (standardized names)
