@@ -11,6 +11,7 @@ data/processed/*
 !data/processed/.gitkeep
 *.csv
 !data/sample/*.csv
+!reports/*.csv
 *predictions*
 
 # Models and Power BI (a .pbix embeds data)
