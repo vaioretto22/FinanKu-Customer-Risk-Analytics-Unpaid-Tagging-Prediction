@@ -4,7 +4,7 @@ End-to-end banking analytics portfolio project: data audit, feature engineering,
 SQL (PostgreSQL), statistical analysis, machine learning classification, shifted-window validation,
 Power BI dashboard and business report.
 
-> **Status: Phase 4 complete, Phase 5 (statistical analysis) next.**
+> **Status: Phase 5 complete, Phase 6 next.**
 > SQL scripts were executed locally and validated on 2026-11-28 (see [`sql/README.md`](sql/README.md)).
 
 ## Project status
